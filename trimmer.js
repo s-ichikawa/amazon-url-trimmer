@@ -1,9 +1,10 @@
-var ta = document.createElement("textarea");
+var ta = document.createElement('textarea');
 var reg = /(www.amazon.[a-z]+.?[a-z]*)\/(.*?)\//;
-if (location.href.match(reg)[2].match(/%/)) {
-    ta.value = location.href.replace(reg, '$1/').replace(/\?.*/, '');
+var fp = location.href.match(reg)[2];
+if (fp.match(/%/)) {
+  ta.value = location.href.replace(reg, '$1/').replace(/[a-z]+=.*$/, '');
 } else {
-    ta.value = location.href.match(/.*\//)[0];
+  ta.value = location.href.match(/.*[\/|?]/)[0].replace(/\?/, '');
 }
 document.body.appendChild(ta);
 ta.select();
